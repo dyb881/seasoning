@@ -1,27 +1,5 @@
 # seasoning
 
-## Getting Started
+基于现有常用开发工具链的一套细节补充工具
 
-Install dependencies,
-
-```bash
-$ npm i
-```
-
-Start the dev server,
-
-```bash
-$ npm start
-```
-
-Build documentation,
-
-```bash
-$ npm run docs:build
-```
-
-Build library via `father-build`,
-
-```bash
-$ npm run build
-```
+[文档](https://dyb881.github.io/seasoning)
