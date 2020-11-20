@@ -41,7 +41,7 @@ export default () => (
 
 ## API
 
-| Name     | Function         | Type                                        |
-| -------- | ---------------- | ------------------------------------------- |
-| 普通日志 | log[Style.key]   | (text: string) => void                      |
-| 日志组   | group[Style.key] | (text: string, content: () => void) => void |
+| Description | Function         | Type                                        |
+| ----------- | ---------------- | ------------------------------------------- |
+| 普通日志    | log[Style.key]   | (text: string) => void                      |
+| 日志组      | group[Style.key] | (text: string, content: () => void) => void |
