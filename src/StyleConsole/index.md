@@ -1,5 +1,12 @@
 ---
 title: 颜色控制台
+nav:
+  title: Common
+  path: /common
+group:
+  title: Tools
+  path: /tools
+legacy: /tools/style-console
 ---
 
 ## StyleConsole

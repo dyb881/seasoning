@@ -1,5 +1,12 @@
 ---
 title: 文件处理工具
+nav:
+  title: Common
+  path: /common
+group:
+  title: Tools
+  path: /tools
+legacy: /tools/file-tool
 ---
 
 ## FileTool

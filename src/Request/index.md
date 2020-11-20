@@ -1,5 +1,12 @@
 ---
 title: 请求器
+nav:
+  title: Common
+  path: /common
+group:
+  title: Tools
+  path: /tools
+legacy: /tools/request
 ---
 
 ## Request
