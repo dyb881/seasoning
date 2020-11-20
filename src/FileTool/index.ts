@@ -1,5 +1,3 @@
-import { extname } from 'path';
-
 // 在body插入一个input[type="file"]用于文件上传使用
 let input: HTMLInputElement;
 
@@ -31,19 +29,20 @@ type TFiles = File | FileList | File[];
 
 /**
  * 判断文件拓展名
+ * 注意后缀名使用小写即可
  */
 export const inExtname = (files: TFiles, extnames: string[]): boolean => {
   if (files instanceof File) {
-    return extnames.includes(extname(files.name).slice(1));
+    return extnames.includes(files.name.replace(/.+\./, '').toLowerCase());
   }
-  return Array.from(files).every((file) => inExtname(file, extnames));
+  return Array.from(files).every(file => inExtname(file, extnames));
 };
 
 /**
  * 文件转Base64
  */
 export const fileToBase64 = (file: File) => {
-  return new Promise<string>((resolve) => {
+  return new Promise<string>(resolve => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
     reader.readAsDataURL(file);

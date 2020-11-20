@@ -6,7 +6,7 @@ nav:
 group:
   title: Tools
   path: /tools
-legacy: /tools/style-console
+  roder: 1
 ---
 
 ## StyleConsole
