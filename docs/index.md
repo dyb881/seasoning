@@ -4,7 +4,7 @@ hero:
   desc: 你的项目可能缺少一点调味料
   actions:
     - text: 快速入门
-      link: /components
+      link: /tools
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
     title: 开箱即用

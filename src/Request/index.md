@@ -26,12 +26,12 @@ export default () => (
   <Space>
     <Button
       type="primary"
-      onClick={() => {
-        get('/test?id=1000');
-        get('http://localhost/api/test?id=1000');
-        get('http://localhost/api/test', { id: 1000 });
-        get('http://localhost/api/test', { id: 1000 }, '测试请求1');
-        get(
+      onClick={async () => {
+        await get('/test?id=1000');
+        await get('http://localhost/api/test?id=1000');
+        await get('http://localhost/api/test', { id: 1000 });
+        await get('http://localhost/api/test', { id: 1000 }, '测试请求1');
+        await get(
           'http://localhost/api/test',
           { id: 1000 },
           {
@@ -40,7 +40,7 @@ export default () => (
             data: { id: 2000 },
           },
         );
-        get(
+        await get(
           'http://localhost/api/test',
           { id: 1000 },
           '测试请求1',
@@ -53,9 +53,9 @@ export default () => (
     </Button>
     <Button
       type="primary"
-      onClick={() => {
-        post('/test', { id: 1000 });
-        upload('/upload', { file: File, file2: File }, '上传文件');
+      onClick={async () => {
+        await post('/test', { id: 1000 });
+        await upload('/upload', { file: File, file2: File }, '上传文件');
       }}
     >
       按顺序发出 POST Upload 请求
@@ -67,3 +67,6 @@ export default () => (
 ## 参数说明
 
 由于相关的参数较多，直接进入代码看注释比较直观，需要重点关注初始化配置 TRequestConfig
+
+- [类型定义](https://github.com/dyb881/seasoning/blob/master/src/Request/types.ts)
+- [默认配置](https://github.com/dyb881/seasoning/blob/master/src/Request/config.ts)

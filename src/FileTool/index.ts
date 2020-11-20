@@ -1,0 +1,166 @@
+import { extname } from 'path';
+
+// 在body插入一个input[type="file"]用于文件上传使用
+let input: HTMLInputElement;
+
+/**
+ * 从文件选择器获取文件
+ */
+export const getFile = (multiple?: boolean) => {
+  if (!input) {
+    input = document.createElement('input');
+    document.body.appendChild(input);
+  }
+  return new Promise<FileList>((resolve, reject) => {
+    Object.assign(input, {
+      accept: '*/*',
+      multiple,
+      onchange: () => {
+        input.files ? resolve(input.files) : reject();
+      },
+      onerror: reject,
+      type: 'file',
+      hidden: true,
+      value: null,
+    });
+    input.click();
+  });
+};
+
+type TFiles = File | FileList | File[];
+
+/**
+ * 判断文件拓展名
+ */
+export const inExtname = (files: TFiles, extnames: string[]): boolean => {
+  if (files instanceof File) {
+    return extnames.includes(extname(files.name).slice(1));
+  }
+  return Array.from(files).every((file) => inExtname(file, extnames));
+};
+
+/**
+ * 文件转Base64
+ */
+export const fileToBase64 = (file: File) => {
+  return new Promise<string>((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.readAsDataURL(file);
+  });
+};
+
+/**
+ * 文件转Base64 批量
+ */
+export const fileToBase64s = (files: FileList | File[]) => {
+  return Promise.all(Array.from(files).map(fileToBase64));
+};
+
+/**
+ * base64 转 blob
+ */
+export const base64ToBlob = (base64: string) => {
+  const arr = base64.split(',');
+  const type = (arr[0].match(/:(.*?);/) || [])[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  let u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type });
+};
+
+/**
+ * blob 转 文件
+ */
+export const blobToFile = (blob: Blob, fileName: string) => {
+  const file: any = blob;
+  file.lastModifiedDate = new Date();
+  file.name = fileName;
+  return file as File;
+};
+
+/**
+ * base64 转 文件
+ */
+export const base64ToFile = (base64: string, fileName = 'file') => {
+  const blob = base64ToBlob(base64);
+  const ext = blob.type.split('/')[1];
+  const file = blobToFile(blob, `${fileName}.${ext}`);
+  return file;
+};
+
+/**
+ * base64 转 文件 批量
+ */
+export const base64ToFiles = (
+  base64s: string[],
+  fileNames = [] as string[],
+) => {
+  return Promise.all(
+    base64s.map((base64, index) => base64ToFile(base64, fileNames[index])),
+  );
+};
+
+/**
+ * blob 下载成文件
+ */
+export const blobDownload = (blob: Blob, fileName: string) => {
+  const a = document.createElement('a');
+  a.href = window.URL.createObjectURL(blob);
+  a.download = fileName;
+  a.click();
+  window.URL.revokeObjectURL(a.href);
+};
+
+/**
+ * base64 下载成文件
+ */
+export const base64Download = (base64: string, fileName: string) => {
+  const blob = base64ToBlob(base64);
+  blobDownload(blob, fileName);
+};
+
+type TOptions = {
+  multiple?: boolean;
+  extnames?: string[];
+  maxSize?: number;
+};
+
+/**
+ * 直接获取 base64
+ */
+export const getBase64s = async (
+  { multiple, extnames, maxSize } = {} as TOptions,
+) => {
+  const files = await getFile(multiple);
+
+  // 验证文件后缀名
+  if (extnames?.length && !inExtname(files, extnames)) {
+    throw new Error(`仅允许选择后缀名为：${extnames.join('、')}的文件`);
+  }
+
+  // 根据尺寸压缩图片
+  if (maxSize) {
+    const { getBase64Strings } = await import('exif-rotate-js');
+    return getBase64Strings(Array.from(files), { maxSize });
+  }
+
+  return fileToBase64s(files);
+};
+
+export default {
+  getFile,
+  inExtname,
+  fileToBase64,
+  fileToBase64s,
+  base64ToBlob,
+  blobToFile,
+  base64ToFile,
+  base64ToFiles,
+  blobDownload,
+  base64Download,
+  getBase64s,
+};
