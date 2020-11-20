@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
-    "docs:build": "dumi build",
+    "docs:build": "dumi build && cp -R ./docs-dist/index.html ./docs-dist/404.html",
     "docs:deploy": "gh-pages -d docs-dist",
     "build": "father-build",
     "deploy": "npm run docs:build && npm run docs:deploy",

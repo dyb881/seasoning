@@ -6,7 +6,6 @@ nav:
 group:
   title: Tools
   path: /tools
-legacy: /tools/file-tool
 ---
 
 ## FileTool

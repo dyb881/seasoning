@@ -1,0 +1,9 @@
+/.git/
+/node_modules/
+/docs/
+/docs-dist/
+.gitignore
+.npmignore
+tsconfig.json
+yarn.lock
+*.log

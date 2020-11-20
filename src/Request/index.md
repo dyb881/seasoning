@@ -6,7 +6,6 @@ nav:
 group:
   title: Tools
   path: /tools
-legacy: /tools/request
 ---
 
 ## Request
@@ -22,7 +21,7 @@ import { Request } from 'seasoning';
 const { baseURL, get, post, put, patch, del, upload } = new Request({
   host: 'http://localhost',
   apiPath: '/api',
-  interceptorsRequest: (config) => {
+  interceptorsRequest: config => {
     // 请求拦截器写入登录信息
     config.headers = { ...config.headers, token: '123456789' };
     return config;
