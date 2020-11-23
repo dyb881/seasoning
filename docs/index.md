@@ -22,7 +22,7 @@ features:
 配置按需加载
 
 ```
-['import', { libraryName: 'seasoning', libraryDirectory: 'es', style: true }]
+['import', { libraryName: 'seasoning', libraryDirectory: 'es', camel2DashComponentName: false, style: true }]
 ```
 
 引用
