@@ -8,3 +8,4 @@ export { default as Hooks } from './Hooks';
 export { default as Img } from './Img';
 export { default as Transition } from './Transition';
 export { default as Tabs } from './Tabs';
+export { default as RouterSwitch } from './RouterSwitch';
