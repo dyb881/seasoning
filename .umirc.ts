@@ -12,7 +12,19 @@ export default defineConfig({
   base: '/seasoning',
   publicPath: '/seasoning/',
   mode: 'site',
+  dynamicImport: {},
   extraBabelPlugins: [
+    [
+      'import',
+      {
+        libraryName: 'seasoning',
+        camel2DashComponentName: false,
+        customStyleName: name => {
+          return `./style/index.less`;
+        },
+      },
+      'seasoning',
+    ],
     [
       'import',
       { libraryName: 'antd', libraryDirectory: 'es', style: true },

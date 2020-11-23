@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { useStates } from '../Hooks';
-import style from './index.module.less';
 
 /**
  * 获取图片对象
@@ -51,7 +50,7 @@ type TImgProps = React.HTMLProps<HTMLDivElement> & {
 /**
  * img 标签加强版
  */
-export const Img: FC<TImgProps> = ({
+const Img: FC<TImgProps> = ({
   src: srcSource,
   mode = 'none',
   loadingTip = '加载中',
@@ -112,8 +111,8 @@ export const Img: FC<TImgProps> = ({
   let modeClass = '';
   if (mode !== 'none' && !loading && !error) {
     modeClass = [
-      style.mode,
-      ...(Array.isArray(mode) ? mode : [mode]).map(i => style[`mode-${i}`]),
+      'seasoning-mode',
+      ...(Array.isArray(mode) ? mode : [mode]).map(i => `seasoning-mode-${i}`),
     ].join(' ');
   }
 
@@ -121,8 +120,8 @@ export const Img: FC<TImgProps> = ({
     <div
       ref={box}
       className={classnames(
-        style.img,
-        { className, [style.tips]: loading || error },
+        'seasoning-img',
+        { className, ['seasoning-tips']: loading || error },
         modeClass,
       )}
       onClick={e => {
