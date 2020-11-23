@@ -11,7 +11,7 @@ interface IProps {
 /**
  * 组件进出动画
  */
-const Transition: React.SFC<IProps> = ({
+const Transition: React.FC<IProps> = ({
   name,
   time = 400,
   enterTime = time,

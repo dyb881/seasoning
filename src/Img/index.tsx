@@ -111,8 +111,10 @@ const Img: FC<TImgProps> = ({
   let modeClass = '';
   if (mode !== 'none' && !loading && !error) {
     modeClass = [
-      'seasoning-mode',
-      ...(Array.isArray(mode) ? mode : [mode]).map(i => `seasoning-mode-${i}`),
+      'seasoning-img-mode',
+      ...(Array.isArray(mode) ? mode : [mode]).map(
+        i => `seasoning-img-mode-${i}`,
+      ),
     ].join(' ');
   }
 
@@ -121,7 +123,7 @@ const Img: FC<TImgProps> = ({
       ref={box}
       className={classnames(
         'seasoning-img',
-        { className, ['seasoning-tips']: loading || error },
+        { className, ['seasoning-img-tips']: loading || error },
         modeClass,
       )}
       onClick={e => {

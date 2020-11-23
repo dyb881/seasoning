@@ -7,3 +7,4 @@ export { default as Hooks } from './Hooks';
 // components
 export { default as Img } from './Img';
 export { default as Transition } from './Transition';
+export { default as Tabs } from './Tabs';
