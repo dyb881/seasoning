@@ -23,7 +23,7 @@ Verify.regular.carNumber.test(carNumber);
 or
 
 ```
-import { regular } from 'seasoning/Verify';
+import { regular } from 'seasoning/es/Verify';
 
 regular.carNumber.test(carNumber);
 ```

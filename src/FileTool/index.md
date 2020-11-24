@@ -23,7 +23,7 @@ FileTool.getFile()
 or
 
 ```
-import { getFile } from 'seasoning/FileTool';
+import { getFile } from 'seasoning/es/FileTool';
 
 getFile()
 ```

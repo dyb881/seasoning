@@ -8,29 +8,29 @@ group:
   path: /tools
 ---
 
-## DomTools
+## DomTool
 
 针对标签处理的一些相关工具
 
 ### 使用方法
 
 ```
-import { DomTools } from 'seasoning';
+import { DomTool } from 'seasoning';
 
-DomTools.installLink(cssUrl);
+DomTool.installLink(cssUrl);
 ```
 
 or
 
 ```
-import { installLink } from 'seasoning/DomTools';
+import { installLink } from 'seasoning/es/DomTool';
 
 installLink(cssUrl);
 ```
 
 ## 方法列表
 
-一般情况下 Typescript 代码提示完全可以明白使用方法。如有不明的情况请跳转[函数定义](https://github.com/dyb881/seasoning/blob/master/src/DomTools/index.ts)
+一般情况下 Typescript 代码提示完全可以明白使用方法。如有不明的情况请跳转[函数定义](https://github.com/dyb881/seasoning/blob/master/src/DomTool/index.ts)
 
 | Function         | Description  |
 | ---------------- | ------------ |

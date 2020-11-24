@@ -2,10 +2,12 @@
 export { default as StyleConsole } from './StyleConsole';
 export { default as Request } from './Request';
 export { default as FileTool } from './FileTool';
-export { default as DomTools } from './DomTools';
+export { default as DomTool } from './DomTool';
 export { default as Hooks } from './Hooks';
 export { default as Cookies } from './Cookies';
 export { default as Verify } from './Verify';
+export { default as ImgTool } from './ImgTool';
+export { default as DataTool } from './DataTool';
 
 // components
 export { default as Img } from './Img';
