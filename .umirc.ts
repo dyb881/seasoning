@@ -26,6 +26,15 @@ export default defineConfig({
       { libraryName: 'antd', libraryDirectory: 'es', style: true },
       'antd',
     ],
+    [
+      'import',
+      {
+        libraryName: 'lodash',
+        libraryDirectory: '',
+        camel2DashComponentName: false,
+      },
+      'lodash',
+    ],
   ],
   navs: [
     null,

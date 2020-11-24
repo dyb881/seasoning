@@ -3,7 +3,7 @@
  */
 export default class Cookies {
   /**
-   * 读取cookies
+   * 读取cookie
    */
   static get = (name: string) => {
     const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
@@ -12,7 +12,7 @@ export default class Cookies {
   };
 
   /**
-   * 批量读取cookies
+   * 批量读取cookie
    */
   static getBatch = (names: string[]) => {
     return names.reduce((o: string[], i) => {
@@ -22,8 +22,9 @@ export default class Cookies {
   };
 
   /**
-   * 写入 cookie
+   * 写入cookie
    * expiredays 过期时间/ms
+   * domain 写入域名
    */
   static set = (
     name: string,
@@ -39,7 +40,7 @@ export default class Cookies {
   };
 
   /**
-   * 批量写入 cookies
+   * 批量写入cookie
    */
   static setBatch = (data: any, expiredays = 0, domain?: string) => {
     Object.keys(data).forEach(name => {
