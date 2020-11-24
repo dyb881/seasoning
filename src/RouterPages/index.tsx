@@ -1,11 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import {
-  matchPath,
-  HashRouter,
-  HashRouterProps,
-  BrowserRouter,
-  BrowserRouterProps,
-} from 'react-router-dom';
+import { matchPath, HashRouter, HashRouterProps, BrowserRouter, BrowserRouterProps } from 'react-router-dom';
 import { History, createHashHistory, createBrowserHistory } from 'history';
 import { RouterSwitch, TRouters } from '../RouterSwitch';
 
@@ -43,17 +37,13 @@ export default class RouterPages {
     Object.assign(this, options);
 
     // 创建路由控制器
-    this.history =
-      this.type === 'hash' ? createHashHistory() : createBrowserHistory();
+    this.history = this.type === 'hash' ? createHashHistory() : createBrowserHistory();
 
     // 创建路由配置
-    this.routersProps = this.routers.reduce(
-      (routersProps, { path, component }) => {
-        routersProps[path] = component;
-        return routersProps;
-      },
-      {} as TRouters,
-    );
+    this.routersProps = this.routers.reduce((routersProps, { path, component }) => {
+      routersProps[path] = component;
+      return routersProps;
+    }, {} as TRouters);
   }
 
   /**
@@ -85,10 +75,6 @@ export default class RouterPages {
       this.history.listen(({ pathname }) => this.match(pathname)); // 监听地址变动
     }, []);
 
-    return this.type === 'hash' ? (
-      <HashRouter {...props} />
-    ) : (
-      <BrowserRouter {...props} />
-    );
+    return this.type === 'hash' ? <HashRouter {...props} /> : <BrowserRouter {...props} />;
   };
 }

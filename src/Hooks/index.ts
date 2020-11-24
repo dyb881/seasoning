@@ -5,10 +5,7 @@ import React, { useState } from 'react';
  * 新状态会合并到原状态
  */
 export const useStates = <T extends object>(defaultStates: T) => {
-  const reducer = (
-    states: T,
-    newStates: Partial<T> & { [key: string]: any },
-  ) => ({ ...states, ...newStates });
+  const reducer = (states: T, newStates: Partial<T> & { [key: string]: any }) => ({ ...states, ...newStates });
   const [states, setStates] = React.useReducer(reducer, defaultStates);
   return { states, setStates };
 };

@@ -44,14 +44,14 @@ export default () => (
             label: '测试请求2',
             url: 'http://localhost/api/testNew',
             data: { id: 2000 },
-          },
+          }
         );
         await get(
           'http://localhost/api/test',
           { id: 1000 },
           '测试请求1',
           { label: '测试请求3' },
-          { label: '测试请求4' },
+          { label: '测试请求4' }
         );
       }}
     >

@@ -60,11 +60,11 @@ export default class Request {
 
     // 执行请求
     return this.requestFunction(config)
-      .catch((error) => {
+      .catch(error => {
         // 异常分析
         return { error, errorText: errorMatchText(this.errorTexts, error) };
       })
-      .then((res) => {
+      .then(res => {
         // 无错误信息，并且响应类型是 json
         if (!res.errorText && config.responseType === 'json') {
           // 获取匹配的状态码
@@ -94,7 +94,7 @@ export default class Request {
    */
   private createRequest = (method: TConfig['method'], configs?: TConfig) => {
     return (url: string, data?: object, ...args: (TConfig | string)[]) => {
-      return this.request(Object.assign({ method, url, data }, configs, ...args.map((i) => labelToConfig(i))));
+      return this.request(Object.assign({ method, url, data }, configs, ...args.map(i => labelToConfig(i))));
     };
   };
 

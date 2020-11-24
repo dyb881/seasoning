@@ -21,16 +21,11 @@ import React from 'react';
 import { Space } from 'antd';
 import { Img } from 'seasoning';
 
-const src =
-  'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
+const src = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
 
 export default () => (
   <Space>
-    <Img
-      src={src}
-      mode="scaleToFill"
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
+    <Img src={src} mode="scaleToFill" style={{ width: 100, height: 50, border: '1px solid #000' }} />
   </Space>
 );
 ```
@@ -42,26 +37,13 @@ import React from 'react';
 import { Space } from 'antd';
 import { Img } from 'seasoning';
 
-const src =
-  'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
+const src = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
 
 export default () => (
   <Space>
-    <Img
-      src={src}
-      mode="aspectFit"
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
-    <Img
-      src={src}
-      mode={['aspectFit', 'left']}
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
-    <Img
-      src={src}
-      mode={['aspectFit', 'right']}
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
+    <Img src={src} mode="aspectFit" style={{ width: 100, height: 50, border: '1px solid #000' }} />
+    <Img src={src} mode={['aspectFit', 'left']} style={{ width: 100, height: 50, border: '1px solid #000' }} />
+    <Img src={src} mode={['aspectFit', 'right']} style={{ width: 100, height: 50, border: '1px solid #000' }} />
   </Space>
 );
 ```
@@ -73,26 +55,13 @@ import React from 'react';
 import { Space } from 'antd';
 import { Img } from 'seasoning';
 
-const src =
-  'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
+const src = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
 
 export default () => (
   <Space>
-    <Img
-      src={src}
-      mode="aspectFill"
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
-    <Img
-      src={src}
-      mode={['aspectFill', 'top']}
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
-    <Img
-      src={src}
-      mode={['aspectFill', 'bottom']}
-      style={{ width: 100, height: 50, border: '1px solid #000' }}
-    />
+    <Img src={src} mode="aspectFill" style={{ width: 100, height: 50, border: '1px solid #000' }} />
+    <Img src={src} mode={['aspectFill', 'top']} style={{ width: 100, height: 50, border: '1px solid #000' }} />
+    <Img src={src} mode={['aspectFill', 'bottom']} style={{ width: 100, height: 50, border: '1px solid #000' }} />
   </Space>
 );
 ```

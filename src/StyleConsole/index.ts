@@ -28,7 +28,7 @@ export default class StyleConsole<T extends TStyles> {
       [key in keyof T]: (...args: any[]) => void;
     };
     const funs: Partial<TFuns> = {};
-    colorKeys.forEach((key) => {
+    colorKeys.forEach(key => {
       funs[key] = (...args: any[]) => fun(this.Styles[key], ...args);
     });
     return funs as TFuns;

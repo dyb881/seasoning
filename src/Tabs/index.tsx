@@ -49,7 +49,7 @@ const Tabs: FC<TTabsProps> = ({
         'seasoning-tabs',
         `seasoning-tabs-${direction}`,
         { 'seasoning-tabs-transition': transition },
-        className,
+        className
       )}
       {...props}
     >

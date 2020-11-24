@@ -1,10 +1,6 @@
 import { defineConfig } from 'dumi';
 
-const getImport = (name: string, options: any) => [
-  'import',
-  { libraryName: name, ...options },
-  name,
-];
+const getImport = (name: string, options: any) => ['import', { libraryName: name, ...options }, name];
 
 export default defineConfig({
   title: 'seasoning',
@@ -27,8 +23,5 @@ export default defineConfig({
       camel2DashComponentName: false,
     }),
   ],
-  navs: [
-    null,
-    { title: 'GitHub', path: 'https://github.com/dyb881/seasoning' },
-  ],
+  navs: [null, { title: 'GitHub', path: 'https://github.com/dyb881/seasoning' }],
 });

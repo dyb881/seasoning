@@ -11,20 +11,10 @@ interface IProps {
 /**
  * 组件进出动画
  */
-const Transition: React.FC<IProps> = ({
-  name,
-  time = 400,
-  enterTime = time,
-  exitTime = time,
-  children,
-}) => (
+const Transition: React.FC<IProps> = ({ name, time = 400, enterTime = time, exitTime = time, children }) => (
   <TransitionGroup>
     {React.Children.map(children, (child: any) => (
-      <CSSTransition
-        key={child.key}
-        classNames={name}
-        timeout={{ enter: enterTime, exit: exitTime }}
-      >
+      <CSSTransition key={child.key} classNames={name} timeout={{ enter: enterTime, exit: exitTime }}>
         {child}
       </CSSTransition>
     ))}

@@ -4,15 +4,7 @@ import { useStates } from '../Hooks';
 import { getImg } from '../ImgTool';
 
 // 裁剪、缩放模式
-type TMode =
-  | 'scaleToFill'
-  | 'aspectFit'
-  | 'aspectFill'
-  | 'top'
-  | 'bottom'
-  | 'center'
-  | 'left'
-  | 'right';
+type TMode = 'scaleToFill' | 'aspectFit' | 'aspectFill' | 'top' | 'bottom' | 'center' | 'left' | 'right';
 
 type TImgProps = React.HTMLProps<HTMLDivElement> & {
   src?: string; // 图片地址
@@ -86,28 +78,20 @@ const Img: FC<TImgProps> = ({
   if (mode !== 'none' && !loading && !error) {
     modeClass = [
       'seasoning-img-mode',
-      ...(Array.isArray(mode) ? mode : [mode]).map(
-        i => `seasoning-img-mode-${i}`,
-      ),
+      ...(Array.isArray(mode) ? mode : [mode]).map(i => `seasoning-img-mode-${i}`),
     ].join(' ');
   }
 
   return (
     <div
       ref={box}
-      className={classnames(
-        'seasoning-img',
-        { className, ['seasoning-img-tips']: loading || error },
-        modeClass,
-      )}
+      className={classnames('seasoning-img', { className, ['seasoning-img-tips']: loading || error }, modeClass)}
       onClick={e => {
         error ? load() : onClick?.(e);
       }}
       {...props}
     >
-      {(loading && loadingTip) || (error && errorTip) || (
-        <img src={src} style={imgStyle} alt="" />
-      )}
+      {(loading && loadingTip) || (error && errorTip) || <img src={src} style={imgStyle} alt="" />}
     </div>
   );
 };

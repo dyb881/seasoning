@@ -94,13 +94,8 @@ export const base64ToFile = (base64: string, fileName = 'file') => {
 /**
  * base64 转 文件 批量
  */
-export const base64ToFiles = (
-  base64s: string[],
-  fileNames = [] as string[],
-) => {
-  return Promise.all(
-    base64s.map((base64, index) => base64ToFile(base64, fileNames[index])),
-  );
+export const base64ToFiles = (base64s: string[], fileNames = [] as string[]) => {
+  return Promise.all(base64s.map((base64, index) => base64ToFile(base64, fileNames[index])));
 };
 
 /**
@@ -131,9 +126,7 @@ type TOptions = {
 /**
  * 直接获取 base64
  */
-export const getBase64s = async (
-  { multiple, extnames, maxSize } = {} as TOptions,
-) => {
+export const getBase64s = async ({ multiple, extnames, maxSize } = {} as TOptions) => {
   const files = await getFile(multiple);
 
   // 验证文件后缀名

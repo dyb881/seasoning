@@ -21,11 +21,7 @@ import React from 'react';
 import { Button } from 'antd';
 import { Transition } from 'seasoning';
 
-const pages = [
-  { background: 'red' },
-  { background: 'blue' },
-  { background: '#d9d9d9' },
-];
+const pages = [{ background: 'red' }, { background: 'blue' }, { background: '#d9d9d9' }];
 const names = ['fade', 'left', 'right', 'top', 'bottom'];
 
 const Page: React.FC<{ name: string }> = ({ name }) => {

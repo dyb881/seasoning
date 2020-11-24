@@ -32,9 +32,7 @@ export const isIdCard = (idCard: string) => {
     const weight_factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
     const check_code = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
     const seventeen = idCard.substring(0, 17);
-    const num = seventeen
-      .split('')
-      .reduce((num, i, k) => num + +i * weight_factor[k], 0);
+    const num = seventeen.split('').reduce((num, i, k) => num + +i * weight_factor[k], 0);
     if (idCard[17] !== check_code[num % 11]) return false;
   }
   return regular.idCard.test(idCard);

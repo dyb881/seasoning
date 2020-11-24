@@ -26,17 +26,12 @@ export default class Cookies {
    * expiredays 过期时间/ms
    * domain 写入域名
    */
-  static set = (
-    name: string,
-    value: string,
-    expiredays = 0,
-    domain?: string,
-  ) => {
+  static set = (name: string, value: string, expiredays = 0, domain?: string) => {
     const exdate = new Date();
     exdate.setTime(+exdate + expiredays);
-    document.cookie = `${name}=${escape(value)}${
-      expiredays ? `;expires=${(exdate as any).toGMTString()}` : ''
-    }${domain ? `;path=/;domain=${domain}` : ''}`;
+    document.cookie = `${name}=${escape(value)}${expiredays ? `;expires=${(exdate as any).toGMTString()}` : ''}${
+      domain ? `;path=/;domain=${domain}` : ''
+    }`;
   };
 
   /**
