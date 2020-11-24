@@ -1,5 +1,11 @@
 import { defineConfig } from 'dumi';
 
+const getImport = (name: string, options: any) => [
+  'import',
+  { libraryName: name, ...options },
+  name,
+];
+
 export default defineConfig({
   title: 'seasoning',
   favicon: '/logo.svg',
@@ -10,31 +16,16 @@ export default defineConfig({
   mode: 'site',
   dynamicImport: {},
   extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: 'seasoning',
-        camel2DashComponentName: false,
-        customStyleName: name => {
-          return `./style/index.less`;
-        },
-      },
-      'seasoning',
-    ],
-    [
-      'import',
-      { libraryName: 'antd', libraryDirectory: 'es', style: true },
-      'antd',
-    ],
-    [
-      'import',
-      {
-        libraryName: 'lodash',
-        libraryDirectory: '',
-        camel2DashComponentName: false,
-      },
-      'lodash',
-    ],
+    getImport('seasoning', {
+      camel2DashComponentName: false,
+      customStyleName: name => './style/index.less',
+    }),
+    getImport('antd', { libraryDirectory: 'es', style: true }),
+    getImport('antd-mobile', { libraryDirectory: 'es', style: true }),
+    getImport('lodash', {
+      libraryDirectory: '',
+      camel2DashComponentName: false,
+    }),
   ],
   navs: [
     null,

@@ -35,3 +35,4 @@ toOptions(['v1']);
 | Function  | Description                   |
 | --------- | ----------------------------- |
 | toOptions | 转为选项值 { value, label }[] |
+| getParams | 获取 URL 参数                 |

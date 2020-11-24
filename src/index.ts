@@ -8,6 +8,7 @@ export { default as Cookies } from './Cookies';
 export { default as Verify } from './Verify';
 export { default as ImgTool } from './ImgTool';
 export { default as DataTool } from './DataTool';
+export { default as RouterPages } from './RouterPages';
 
 // components
 export { default as Img } from './Img';

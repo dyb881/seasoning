@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
 import { Redirect, Route, Switch, SwitchProps } from 'react-router-dom';
 
-type TRouters = {
+export type TRouters = {
   [key: string]: React.ComponentType<any>;
 };
 
-type TRouterSwitchProps = SwitchProps & {
+export type TRouterSwitchProps = SwitchProps & {
   routers: TRouters; // 页面配置列表
 };
 
 /**
  * 路由配置生成组件
  */
-const RouterSwitch: FC<TRouterSwitchProps> = ({ routers, ...props }) => {
+export const RouterSwitch: FC<TRouterSwitchProps> = ({ routers, ...props }) => {
   const keys = Object.keys(routers);
 
   return (
