@@ -18,10 +18,7 @@ export default defineConfig({
     }),
     getImport('antd', { libraryDirectory: 'es', style: true }),
     getImport('antd-mobile', { libraryDirectory: 'es', style: true }),
-    getImport('lodash', {
-      libraryDirectory: '',
-      camel2DashComponentName: false,
-    }),
+    getImport('lodash', { libraryDirectory: '', camel2DashComponentName: false }),
   ],
   navs: [null, { title: 'GitHub', path: 'https://github.com/dyb881/seasoning' }],
 });

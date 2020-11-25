@@ -89,9 +89,9 @@ export type TRequestConfig = {
   console?: boolean; // 请求过程输出到控制台
   defaultConfig?: TConfig; // 默认请求配置
   errorTexts?: TErrorTexts; // 错误解析字段
-  statusCodeKeys: TStatusCodeKeys; // 状态码 key
-  messageKeys: TMessageKeys; // 匹配信息提示的 key
-  successCodes: TSuccessCodes; // 成功状态码
+  statusCodeKeys?: TStatusCodeKeys; // 状态码 key
+  messageKeys?: TMessageKeys; // 匹配信息提示的 key
+  successCodes?: TSuccessCodes; // 成功状态码
   interceptorsRequest?: TInterceptorsRequest; // 请求拦截，可以返回拦截处理的配置
   interceptorsResponse?: TInterceptorsResponse; // 响应拦截，可以返回拦截处理的结果
   requestFunction?: TRequestFunction; // 用于发出请求的方法
