@@ -13,6 +13,7 @@ export default defineConfig({
   dynamicImport: {},
   extraBabelPlugins: [
     getImport('seasoning', {
+      libraryDirectory: 'src',
       camel2DashComponentName: false,
       customStyleName: name => './style/index.less',
     }),

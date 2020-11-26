@@ -26,18 +26,18 @@ export default class Cookies {
    * expiredays 过期时间/ms
    * domain 写入域名
    */
-  static set = (name: string, value: string, expiredays = 0, domain?: string) => {
+  static set = (name: string, value: string | number, expiredays = 0, domain?: string) => {
     const exdate = new Date();
     exdate.setTime(+exdate + expiredays);
-    document.cookie = `${name}=${escape(value)}${expiredays ? `;expires=${(exdate as any).toGMTString()}` : ''}${
-      domain ? `;path=/;domain=${domain}` : ''
-    }`;
+    document.cookie = `${name}=${encodeURIComponent(value)}${
+      expiredays ? `;expires=${(exdate as any).toGMTString()}` : ''
+    }${domain ? `;path=/;domain=${domain}` : ''}`;
   };
 
   /**
    * 批量写入cookie
    */
-  static setBatch = (data: any, expiredays = 0, domain?: string) => {
+  static setBatch = <T extends { [name: string]: string | number }>(data: T, expiredays = 0, domain?: string) => {
     Object.keys(data).forEach(name => {
       Cookies.set(name, data[name], expiredays, domain);
     });

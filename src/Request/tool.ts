@@ -117,7 +117,7 @@ export const requestFunction: TRequestFunction = config => {
 
       if (responseType !== 'json' && responseType && response[responseType]) {
         // 返回特定解析类型
-        return { [responseType]: response[responseType]() };
+        return { [responseType]: response[responseType](), response };
       }
 
       return response.json();
