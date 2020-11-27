@@ -68,7 +68,7 @@ export default () => (
 
 ## API
 
-| Name       | Description    | Type                       | default  |
+| Name       | Description    | Type                       | Default  |
 | ---------- | -------------- | -------------------------- | -------- |
 | src        | 图片地址       | string                     |          |
 | mode       | 裁剪、缩放模式 | 'none' \| TMode \| TMode[] | none     |

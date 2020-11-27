@@ -137,7 +137,7 @@ export default () => {
 
 ## API
 
-| Name      | Description  | Type   | default         |
+| Name      | Description  | Type   | Default         |
 | --------- | ------------ | ------ | --------------- |
 | name      | 动画标识名   | string |                 |
 | time      | 动画时长     | number | 400             |

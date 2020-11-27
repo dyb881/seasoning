@@ -34,7 +34,7 @@ export default () => {
 
 ## Options
 
-| Name    | Description | Type                      | default |
+| Name    | Description | Type                      | Default |
 | ------- | ----------- | ------------------------- | ------- |
 | routers | 路由配置    | TRouter[]                 |         |
 | type    | 路由类型    | 'hash' \| 'browser'       | hash    |

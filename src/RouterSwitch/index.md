@@ -51,6 +51,6 @@ export default () => (
 
 ## API
 
-| Name    | Description  | Type                                         | default |
+| Name    | Description  | Type                                         | Default |
 | ------- | ------------ | -------------------------------------------- | ------- |
 | routers | 页面配置列表 | { [key: string]: React.ComponentType<any\> } |         |

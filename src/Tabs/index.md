@@ -59,7 +59,7 @@ export default () => (
 
 ## API
 
-| Name       | Description      | Type                                   | default |
+| Name       | Description      | Type                                   | Default |
 | ---------- | ---------------- | -------------------------------------- | ------- |
 | tabs       | 选项配置         | TTab[]                                 |         |
 | activeKey  | 激活下标         | number                                 | 0       |
@@ -69,7 +69,7 @@ export default () => (
 
 ## TTab 选项配置
 
-| Name    | Description  | Type                                                           | default |
+| Name    | Description  | Type                                                           | Default |
 | ------- | ------------ | -------------------------------------------------------------- | ------- |
 | content | 内容         | React.ReactNode                                                |         |
 | render  | tab 选项渲染 | (active: boolean, index: number, tab: TTab) => React.ReactNode |         |
