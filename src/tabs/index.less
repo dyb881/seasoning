@@ -1,0 +1,66 @@
+.seasoning-tabs {
+  display: flex;
+
+  .seasoning-tabs-main {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+
+    .seasoning-tabs-main-box {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+
+      .seasoning-tabs-main-item {
+        flex: 1;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+  }
+
+  .seasoning-tabs-options {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 0 10px fade(#9da0a5, 24%);
+    z-index: 1;
+    flex-shrink: 0;
+
+    .seasoning-tabs-options-item {
+      flex: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &.seasoning-tabs-top {
+    flex-direction: column;
+  }
+
+  &.seasoning-tabs-bottom {
+    flex-direction: column-reverse;
+  }
+
+  &.seasoning-tabs-left,
+  &.seasoning-tabs-right {
+    .seasoning-tabs-main-box,
+    .seasoning-tabs-options {
+      flex-direction: column;
+    }
+  }
+
+  &.seasoning-tabs-right {
+    flex-direction: row-reverse;
+  }
+
+  &.seasoning-tabs-transition {
+    .seasoning-tabs-main-box,
+    .seasoning-tabs-options {
+      transition: all 0.3s;
+    }
+  }
+}

@@ -1,5 +1,4 @@
 ---
-title:
 nav:
   title: Common
   path: /common
