@@ -14,23 +14,45 @@ order: 11
 
 ### 使用方法
 
-```
-/**
- * mobx 主类
- */
+```tsx
+import React from 'react';
+import { Space, Button } from 'antd';
+import { makeAutoObservable } from 'mobx';
+import { mobxCombine } from 'seasoning';
+
 class Stores {
-  user = new User();
+  num = 0;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  increase = () => {
+    this.num += 1;
+  };
+
+  reset = () => {
+    this.num = 0;
+  };
 }
 
 /**
  * 全局状态
  */
-export const stores = new Stores();
+const stores = new Stores();
 
 /**
  * 生成关联器
  */
-export const { combine, combinePage } = mobxCombine(stores);
+const { combine, combinePage } = mobxCombine(stores);
 
-export default stores;
+const Num = combine(({ stores }) => <span>{stores.num}</span>);
+
+export default combine(({ stores }) => (
+  <Space>
+    <Num />
+    <Button onClick={stores.increase}>increase</Button>
+    <Button onClick={stores.reset}>reset</Button>
+  </Space>
+));
 ```
