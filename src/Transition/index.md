@@ -1,11 +1,11 @@
 ---
-title: Transition
 nav:
   title: Common
   path: /common
 group:
   title: Components
   path: /components
+order: 2
 ---
 
 ## Transition
@@ -50,9 +50,7 @@ const Page: React.FC<{ name: string }> = ({ name }) => {
               top: 0,
               ...page,
             }}
-          >
-            元素{key + 1}
-          </div>
+          />
         </Transition>
       </div>
       <Button
@@ -71,7 +69,7 @@ const Page: React.FC<{ name: string }> = ({ name }) => {
 };
 
 export default () => {
-  return names.map(i => <Page name={i} />);
+  return names.map(i => <Page key={i} name={i} />);
 };
 ```
 
@@ -112,9 +110,7 @@ const Popup: React.FC<{ name: string }> = ({ name }) => {
                 top: 0,
                 background: 'red',
               }}
-            >
-              弹出层
-            </div>
+            />
           )}
         </Transition>
       </div>
@@ -131,7 +127,7 @@ const Popup: React.FC<{ name: string }> = ({ name }) => {
 };
 
 export default () => {
-  return names.map(i => <Popup name={i} />);
+  return names.map(i => <Popup key={i} name={i} />);
 };
 ```
 
@@ -161,7 +157,7 @@ export default () => {
 ## 自定义动画
 
 ```less
-@import 'node_modules/seasoning/es/Transition/style/fun.less';
+@import 'node_modules/seasoning/es/transition/fun.less';
 /*
 创建动画
 .createTransition(

@@ -12,11 +12,7 @@ export default defineConfig({
   mode: 'site',
   dynamicImport: {},
   extraBabelPlugins: [
-    getImport('seasoning', {
-      libraryDirectory: 'src',
-      camel2DashComponentName: false,
-      customStyleName: name => './style/index.less',
-    }),
+    getImport('seasoning', { libraryDirectory: 'src' }),
     getImport('antd', { libraryDirectory: 'es', style: true }),
     getImport('antd-mobile', { libraryDirectory: 'es', style: true }),
     getImport('lodash', { libraryDirectory: '', camel2DashComponentName: false }),

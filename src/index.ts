@@ -1,17 +1,18 @@
 // tools
-export { default as StyleConsole } from './StyleConsole';
-export { default as Request } from './Request';
-export { default as FileTool } from './FileTool';
-export { default as DomTool } from './DomTool';
-export { default as Hooks } from './Hooks';
-export { default as Cookies } from './Cookies';
-export { default as Verify } from './Verify';
-export { default as ImgTool } from './ImgTool';
-export { default as DataTool } from './DataTool';
-export { default as RouterPages } from './RouterPages';
+export { default as styleConsole } from './style-console';
+export { default as Request } from './request';
+export { default as fileTool } from './file-tool';
+export { default as imgTool } from './img-tool';
+export { default as domTool } from './dom-tool';
+export { default as dataTool } from './data-tool';
+export { default as verify } from './verify';
+export { default as Cookies } from './cookies';
+export { default as hooks } from './hooks';
+export { default as RouterPages } from './router-pages';
+export { default as mobxCombine } from './mobx-combine';
 
 // components
-export { default as Img } from './Img';
-export { default as Transition } from './Transition';
-export { default as Tabs } from './Tabs';
-export { default as RouterSwitch } from './RouterSwitch';
+export { default as Img } from './img';
+export { default as Transition } from './transition';
+export { default as Tabs } from './tabs';
+export { default as RouterSwitch } from './router-pages';

@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { useStates } from '../Hooks';
+import { useStates } from '../hooks';
 import classnames from 'classnames';
+import './index.less';
 
 type TTab = {
   content: React.ReactNode;
@@ -40,8 +41,6 @@ const Tabs: FC<TTabsProps> = ({
     contents[key] = tabs[key].content;
     setStates({ contents });
   }, [key]);
-
-  console.log(contents);
 
   return (
     <div

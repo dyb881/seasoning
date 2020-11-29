@@ -1,18 +1,18 @@
 ---
-title: Img
 nav:
   title: Common
   path: /common
 group:
   title: Components
   path: /components
+order: 4
 ---
 
-## Img
+# Img
 
 img 标签加强版
 
-### 实例
+## 实例
 
 缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素
 

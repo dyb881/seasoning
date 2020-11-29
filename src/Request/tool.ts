@@ -9,7 +9,7 @@ import {
   TRequestFunction,
 } from './types';
 import { consoleStyle } from './config';
-import StyleConsole from '../StyleConsole';
+import styleConsole from '../style-console';
 
 /**
  * 根据数据类型生成方法
@@ -126,7 +126,7 @@ export const requestFunction: TRequestFunction = config => {
   });
 };
 
-const { group } = new StyleConsole(consoleStyle);
+const { request, success, fail } = styleConsole(consoleStyle);
 
 /**
  * 打印日志
@@ -134,19 +134,19 @@ const { group } = new StyleConsole(consoleStyle);
  */
 export const log = {
   request: (config: TConfig) => {
-    group.request(`Request: ${config.label || config.url} ⇅`, () => {
+    request.group(`Request: ${config.label || config.url} ⇅`, () => {
       console.log('请求类型：', config.method);
       console.log('请求地址：', config.url);
       console.log('请求数据：', config.data || '无');
       console.log('请求配置：', config);
     });
   },
-  response: (res: any, { label, url }: TConfig, success: boolean) => {
-    let title = `Response: ${label || url} ${success ? '√' : '×'}`;
+  response: (res: any, { label, url }: TConfig, ok: boolean) => {
+    let title = `Response: ${label || url} ${ok ? '√' : '×'}`;
     if (res.time?.total) title += ` 用时：${res.time.total}`;
-    group[success ? 'success' : 'fail'](title, () => {
+    (ok ? success : fail).group(title, () => {
       console.log('响应数据：', res);
-      if (!success) {
+      if (!ok) {
         console.log('响应异常：', res.error || '无');
         console.log('异常解析：', res.errorText);
       }

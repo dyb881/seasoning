@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useRef } from 'react';
 import classnames from 'classnames';
-import { useStates } from '../Hooks';
-import { getImg } from '../ImgTool';
+import { useStates } from '../hooks';
+import { getImg } from '../img-tool';
+import './index.less';
 
 // 裁剪、缩放模式
 type TMode = 'scaleToFill' | 'aspectFit' | 'aspectFill' | 'top' | 'bottom' | 'center' | 'left' | 'right';

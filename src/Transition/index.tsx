@@ -1,5 +1,6 @@
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import './index.less';
 
 interface IProps {
   name: string; // 动画标识名

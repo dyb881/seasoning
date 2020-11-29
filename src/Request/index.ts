@@ -10,6 +10,7 @@ import {
 } from './tool';
 import { defaultConfig, errorTexts, statusCodeKeys, messageKeys, successCodes } from './config';
 import { TConfig, TRequestConfig, TRequestReturn } from './types';
+import { pickBy } from 'lodash';
 
 /**
  * 请求器
@@ -26,24 +27,38 @@ export default class Request {
   interceptorsRequest = interceptorsRequest;
   interceptorsResponse = interceptorsResponse;
   requestFunction = requestFunction;
+  config?: TRequestConfig;
 
-  baseURL = '';
+  get baseURL() {
+    return this.host + this.apiPath;
+  }
 
   constructor(config?: TRequestConfig) {
-    if (config) {
-      const { defaultConfig, errorTexts, requestFunction, ...configs } = config;
-      Object.assign(this.defaultConfig, defaultConfig);
-      Object.assign(this.errorTexts, errorTexts);
-      Object.assign(this, configs);
-      if (requestFunction) this.requestFunction = requestFunction;
-      this.baseURL = this.host + this.apiPath;
-    }
+    config && this.init(config);
   }
+
+  /**
+   * 克隆请求器
+   * 在当前请求器配置基础上合并配置，并生成新的请求
+   * 主要用于一个项目面向多个服务的场景
+   */
+  clone = (config: TRequestConfig) => new Request({ ...this.config, ...config });
+
+  /**
+   * 初始化
+   */
+  private init = (config: TRequestConfig) => {
+    const { defaultConfig, errorTexts, ...configs } = config;
+    Object.assign(this.defaultConfig, defaultConfig);
+    Object.assign(this.errorTexts, errorTexts);
+    Object.assign(this, pickBy(configs, Boolean));
+    this.config = config;
+  };
 
   /**
    * 执行请求
    */
-  request = (configs: TConfig) => {
+  private request = (configs: TConfig) => {
     let { url = '', ...config } = configs;
 
     // 非完整 url 的情况下，拼接地址

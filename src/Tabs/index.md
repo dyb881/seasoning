@@ -1,11 +1,11 @@
 ---
-title: Tabs
 nav:
   title: Common
   path: /common
 group:
   title: Components
   path: /components
+order: 3
 ---
 
 ## Tabs

@@ -1,14 +1,14 @@
 ---
-title: 请求器
 nav:
   title: Common
   path: /common
 group:
   title: Tools
   path: /tools
+order: 2
 ---
 
-## Request
+## 请求器
 
 配置型请求封装，所有参数最终均合成请求配置对象，并使用 TRequestFunction 发出请求，TRequestFunction 可重写替换
 
@@ -18,7 +18,7 @@ import { Space, Button } from 'antd';
 import { Request } from 'seasoning';
 
 // 初始化之后可得到 baseURL 和多个请求类型方法
-const { baseURL, get, post, put, patch, del, upload } = new Request({
+const { baseURL, get, post, put, patch, del, upload, clone } = new Request({
   host: 'http://localhost',
   apiPath: '/api',
   interceptorsRequest: config => {
@@ -26,6 +26,10 @@ const { baseURL, get, post, put, patch, del, upload } = new Request({
     config.headers = { ...config.headers, token: '123456789' };
     return config;
   },
+});
+
+const cloneRequest = clone({
+  apiPath: '/apis',
 });
 
 export default () => (
@@ -66,6 +70,14 @@ export default () => (
     >
       按顺序发出 POST Upload 请求
     </Button>
+    <Button
+      type="primary"
+      onClick={async () => {
+        await cloneRequest.post('/test', { id: 1000 });
+      }}
+    >
+      使用克隆请求器发出请求
+    </Button>
   </Space>
 );
 ```
@@ -74,5 +86,5 @@ export default () => (
 
 由于相关的参数较多，直接进入代码看注释比较直观，需要重点关注初始化配置 TRequestConfig
 
-- [类型定义](https://github.com/dyb881/seasoning/blob/master/src/Request/types.ts)
-- [默认配置](https://github.com/dyb881/seasoning/blob/master/src/Request/config.ts)
+- [类型定义](https://github.com/dyb881/seasoning/blob/master/src/request/types.ts)
+- [默认配置](https://github.com/dyb881/seasoning/blob/master/src/request/config.ts)
