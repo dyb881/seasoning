@@ -9,7 +9,7 @@ export enum Application {
 /**
  * 默认请求配置
  */
-export type TConfig<T extends any = any> = {
+export type TConfig = {
   mode?: 'same-origin' | 'no-cors' | 'cors' | 'navigate'; // 请求的模式
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'; // 请求类型，部分后端只能识别大写
   cache?: 'default' | 'no-store' | 'reload' | 'no-cache' | 'force-cache' | 'only-if-cached'; // 缓存模式
@@ -23,7 +23,7 @@ export type TConfig<T extends any = any> = {
   timeout?: number; // 请求超时
   body?: any; // 请求主体
   url?: string; // 请求地址
-  data?: T; // 请求元数据，转为主体前的数据
+  data?: any; // 请求元数据，转为主体前的数据
   label?: string; // 请求标签，一般用于请求日志标记
   [key: string]: any;
 };
@@ -57,7 +57,7 @@ export type TInterceptorsRequest = (config: TConfig) => TConfig;
 /**
  * 响应拦截，可以返回拦截处理的结果
  */
-export type TInterceptorsResponse = <T>(res: T, config: TConfig) => T;
+export type TInterceptorsResponse = (res: any, config: TConfig) => any;
 
 /**
  * 用于发出请求的方法
