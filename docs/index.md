@@ -28,7 +28,7 @@ features:
 引用
 
 ```
-import { StyleConsole } from 'seasoning';
-const { log } = new StyleConsole({ red: 'color: red' })
-log.red('红色日志')
+import { styleConsole } from 'seasoning';
+const { red } = new StyleConsole({ red: 'color: red' })
+red.log('红色日志')
 ```

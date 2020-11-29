@@ -21,12 +21,12 @@ import React from 'react';
 import { Button } from 'antd';
 import { Transition } from 'seasoning';
 
-const pages = [{ background: 'red' }, { background: 'blue' }, { background: '#d9d9d9' }];
+const list = [{ background: 'red' }, { background: 'blue' }, { background: '#d9d9d9' }];
 const names = ['fade', 'left', 'right', 'top', 'bottom'];
 
 const Page: React.FC<{ name: string }> = ({ name }) => {
   const [key, setKey] = React.useState(0);
-  const page = pages[key];
+  const page = list[key];
 
   return (
     <div>
@@ -57,7 +57,7 @@ const Page: React.FC<{ name: string }> = ({ name }) => {
         style={{ margin: '10px 0' }}
         onClick={() => {
           setKey(key => {
-            if (key >= pages.length - 1) return 0;
+            if (key >= list.length - 1) return 0;
             return ++key;
           });
         }}
