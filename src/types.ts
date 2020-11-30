@@ -29,3 +29,8 @@ export type TOptions<T = TOption> = T[] | (string | number)[] | object;
 export type TOptionsProps<T = TOption> = {
   options?: TOptions<T>;
 };
+
+/**
+ * 获取组件 Props
+ */
+export type TGetProps<T> = T extends React.ComponentType<infer P> ? P : never;

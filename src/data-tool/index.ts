@@ -1,5 +1,5 @@
 import qs from 'qs';
-import { TOptions } from './types';
+import { TOptions } from '../types';
 
 /**
  * 转为选项值
@@ -7,7 +7,7 @@ import { TOptions } from './types';
  */
 export const toOptions = (options: TOptions) => {
   const isArray = Array.isArray(options);
-  return Object.keys(options).map(k => {
+  return Object.keys(options).map((k) => {
     const option = (options as any)[k];
     if (typeof option === 'object') return option;
     return { label: option, value: isArray ? +k : k };

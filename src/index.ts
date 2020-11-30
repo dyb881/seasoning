@@ -10,6 +10,7 @@ export { default as Cookies } from './cookies';
 export { default as hooks } from './hooks';
 export { default as RouterPages } from './router-pages';
 export { default as mobxCombine } from './mobx-combine';
+export { default as formEnhance } from './form-enhance';
 
 // components
 export { default as Img } from './img';

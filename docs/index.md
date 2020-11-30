@@ -21,14 +21,14 @@ features:
 
 配置按需加载
 
-```
-['import', { libraryName: 'seasoning', libraryDirectory: 'es' }]
+```json
+["import", { "libraryName": "seasoning", "libraryDirectory": "es" }];
 ```
 
 引用
 
 ```
 import { styleConsole } from 'seasoning';
-const { red } = new StyleConsole({ red: 'color: red' })
-red.log('红色日志')
+const { red } = styleConsole({ red: 'color: red' });
+red.log('红色日志');
 ```

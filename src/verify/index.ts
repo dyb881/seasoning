@@ -21,6 +21,11 @@ export const regular = {
    * 中文姓名
    */
   chineseName: /^(?:[\u4e00-\u9fa5·]{2,8})$/,
+
+  /**
+   * 全空格的字符串
+   */
+  space: /^[\s\S]*.*[^\s][\s\S]*$/,
 };
 
 /**
