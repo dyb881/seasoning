@@ -1,3 +1,5 @@
+// ----------------- Common ----------------- //
+
 // tools
 export { default as styleConsole } from './style-console';
 export { default as Request } from './request';
@@ -18,5 +20,13 @@ export { default as Transition } from './transition';
 export { default as Tabs } from './tabs';
 export { default as RouterSwitch } from './router-pages';
 
-// 移动端
+// ----------------- Common ----------------- //
+
+// ----------------- Mobile ----------------- //
+
+// tools
 export { default as compatible } from './compatible';
+
+// components
+
+// ----------------- Mobile ----------------- //
