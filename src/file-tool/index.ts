@@ -35,14 +35,14 @@ export const inExtname = (files: TFiles, extnames: string[]): boolean => {
   if (files instanceof File) {
     return extnames.includes(files.name.replace(/.+\./, '').toLowerCase());
   }
-  return Array.from(files).every(file => inExtname(file, extnames));
+  return Array.from(files).every((file) => inExtname(file, extnames));
 };
 
 /**
  * 文件转Base64
  */
 export const fileToBase64 = (file: File) => {
-  return new Promise<string>(resolve => {
+  return new Promise<string>((resolve) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
     reader.readAsDataURL(file);
@@ -125,6 +125,7 @@ type TOptions = {
 
 /**
  * 直接获取 base64
+ * 添加 maxSize 参数后，会根据尺寸压缩并解决图片旋转的问题
  */
 export const getBase64s = async ({ multiple, extnames, maxSize } = {} as TOptions) => {
   const files = await getFile(multiple);

@@ -19,6 +19,7 @@ export { default as Img } from './img';
 export { default as Transition } from './transition';
 export { default as Tabs } from './tabs';
 export { default as RouterSwitch } from './router-pages';
+export { default as InputList } from './input-list';
 
 // ----------------- Common ----------------- //
 
