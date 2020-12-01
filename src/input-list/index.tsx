@@ -2,7 +2,7 @@ import React, { FC, isValidElement, cloneElement, useState, useEffect } from 're
 import { TInputNotRequired } from '../types';
 import './index.less';
 
-export type TInputListProps = TInputNotRequired<any[]> & {
+export type TInputListProps<T = any> = TInputNotRequired<T[]> & {
   children: React.ReactNode;
   addButton?: React.ReactNode; // 新增行按钮
   delButton?: React.ReactNode; // 删除行按钮
