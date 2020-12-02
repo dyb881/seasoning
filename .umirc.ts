@@ -4,8 +4,8 @@ const getImport = (name: string, options: any) => ['import', { libraryName: name
 
 export default defineConfig({
   title: 'seasoning',
-  favicon: '/logo.svg',
-  logo: '/logo.svg',
+  favicon: './logo.svg',
+  logo: './logo.svg',
   outputPath: 'docs-dist',
   base: '/seasoning',
   publicPath: '/seasoning/',

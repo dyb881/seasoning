@@ -3,19 +3,14 @@ import { useStates } from '../hooks';
 import classnames from 'classnames';
 import './index.less';
 
-type TTab = {
-  content: React.ReactNode;
-  render: (active: boolean, index: number, tab: TTab) => React.ReactNode;
-};
-
-type TDirection = 'top' | 'bottom' | 'left' | 'right';
-
-type TTabsProps = React.HTMLProps<HTMLDivElement> & {
-  tabs: TTab[];
+export type TTabsProps<T extends any = any> = React.HTMLProps<HTMLDivElement> & {
+  tabs: T[];
   activeKey?: number;
   onChange?: (activeKey: number) => void;
-  direction?: TDirection;
+  direction?: 'top' | 'bottom' | 'left' | 'right';
   transition?: boolean;
+  render: (tab: T, index: number) => React.ReactNode; // 渲染页面内容
+  itemRender: (active: boolean, tab: T, index: number) => React.ReactNode; // 渲染 tab
 };
 
 /**
@@ -27,6 +22,8 @@ const Tabs: FC<TTabsProps> = ({
   onChange,
   direction = 'top',
   transition,
+  render,
+  itemRender,
   className,
   ...props
 }) => {
@@ -38,7 +35,7 @@ const Tabs: FC<TTabsProps> = ({
 
   useEffect(() => {
     if (contents[key]) return;
-    contents[key] = tabs[key].content;
+    contents[key] = render(tabs[key], key);
     setStates({ contents });
   }, [key]);
 
@@ -62,7 +59,7 @@ const Tabs: FC<TTabsProps> = ({
               onChange?.(k);
             }}
           >
-            {i.render(key === k, k, i)}
+            {itemRender(key === k, i, k)}
           </div>
         ))}
       </div>
