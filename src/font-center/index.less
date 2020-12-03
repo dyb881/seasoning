@@ -1,0 +1,18 @@
+.seasoning-font-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .seasoning-font-center-text {
+    display: table;
+    text-align: center;
+    font-size: 2em;
+
+    & > * {
+      display: table-cell;
+      vertical-align: middle;
+      transform: scale(0.5);
+      white-space: nowrap;
+    }
+  }
+}

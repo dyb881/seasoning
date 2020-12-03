@@ -3,7 +3,7 @@ import { useStates } from '../hooks';
 import classnames from 'classnames';
 import './index.less';
 
-export type TTabsProps<T extends any = any> = React.HTMLProps<HTMLDivElement> & {
+export type TTabsProps<T extends any = any> = Omit<React.HTMLProps<HTMLDivElement>, 'onChange'> & {
   tabs: T[];
   activeKey?: number;
   onChange?: (activeKey: number) => void;
