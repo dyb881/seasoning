@@ -41,7 +41,14 @@ export const inExtname = (files: TFiles, extnames: string[]): boolean => {
 /**
  * 文件转Base64
  */
-export const fileToBase64 = (file: File) => {
+export const fileToBase64 = async (file: File, maxSize?: number) => {
+  // 根据尺寸压缩图片
+  if (maxSize) {
+    const { getBase64Strings } = await import('exif-rotate-js');
+    const [base64] = await getBase64Strings([file], { maxSize });
+    return base64;
+  }
+
   return new Promise<string>((resolve) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
@@ -52,8 +59,8 @@ export const fileToBase64 = (file: File) => {
 /**
  * 文件转Base64 批量
  */
-export const fileToBase64s = (files: FileList | File[]) => {
-  return Promise.all(Array.from(files).map(fileToBase64));
+export const fileToBase64s = (files: FileList | File[], maxSize?: number) => {
+  return Promise.all(Array.from(files).map((file) => fileToBase64(file, maxSize)));
 };
 
 /**

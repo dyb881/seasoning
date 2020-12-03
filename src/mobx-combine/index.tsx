@@ -1,14 +1,6 @@
 import React, { FC } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { configure } from 'mobx';
 import { observer } from 'mobx-react';
-
-/**
- * 全局设置
- */
-configure({
-  useProxies: 'ifavailable', // 自动判断是否使用代理对象
-});
 
 /**
  * mobx 关联器
@@ -27,7 +19,7 @@ export const mobxCombine = <T extends any>(stores: T) => {
     // 生成观察者组件
     const Observer = observer(Component);
     // 注入全局状态
-    const Combine: FC<P> = props => <Observer {...props} stores={stores} />;
+    const Combine: FC<P> = (props) => <Observer {...props} stores={stores} />;
     return Combine;
   };
 

@@ -7,7 +7,7 @@ import './index.less';
 // 裁剪、缩放模式
 type TMode = 'scaleToFill' | 'aspectFit' | 'aspectFill' | 'top' | 'bottom' | 'center' | 'left' | 'right';
 
-type TImgProps = React.HTMLProps<HTMLDivElement> & {
+export type TImgProps = React.HTMLProps<HTMLDivElement> & {
   src?: string; // 图片地址
   mode?: 'none' | TMode | TMode[]; // 裁剪、缩放模式 default none
   loadingTip?: React.ReactNode; // 加载提示内容
@@ -79,15 +79,15 @@ const Img: FC<TImgProps> = ({
   if (mode !== 'none' && !loading && !error) {
     modeClass = [
       'seasoning-img-mode',
-      ...(Array.isArray(mode) ? mode : [mode]).map(i => `seasoning-img-mode-${i}`),
+      ...(Array.isArray(mode) ? mode : [mode]).map((i) => `seasoning-img-mode-${i}`),
     ].join(' ');
   }
 
   return (
     <div
       ref={box}
-      className={classnames('seasoning-img', { className, ['seasoning-img-tips']: loading || error }, modeClass)}
-      onClick={e => {
+      className={classnames('seasoning-img', { ['seasoning-img-tips']: loading || error }, modeClass, className)}
+      onClick={(e) => {
         error ? load() : onClick?.(e);
       }}
       {...props}
