@@ -65,7 +65,7 @@ const Img: FC<TImgProps> = ({
       }
 
       setStates({ src: srcSource, loading: false, style });
-    } catch (e) {
+    } catch {
       setStates({ loading: false, error: true });
     }
   };

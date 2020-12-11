@@ -70,7 +70,7 @@ export const locationReplace = (url: string) => {
       window.history.replaceState(null, window.document.title, url);
       window.history.go(0);
       return;
-    } catch (e) {}
+    } catch {}
   }
   window.location.replace(url);
 };
@@ -87,7 +87,7 @@ export const getKeyboardCoverProps = (props?: any) => {
     onFocus: (...args: any[]) => {
       props?.onFocus(...args);
       document.getElementsByTagName('body')[0].style.height = window.innerHeight + 302 + 'px';
-      setTimeout(function() {
+      setTimeout(() => {
         document.body.scrollTop = 302;
         document.documentElement.scrollTop = 302;
       }, 300);
