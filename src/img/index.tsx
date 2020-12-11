@@ -7,11 +7,18 @@ import './index.less';
 // 裁剪、缩放模式
 type TMode = 'scaleToFill' | 'aspectFit' | 'aspectFill' | 'top' | 'bottom' | 'center' | 'left' | 'right';
 
-export type TImgProps = React.HTMLProps<HTMLDivElement> & {
+export type TImgOptions = {
+  src: string; // 图片地址
+  style: React.CSSProperties;
+  mode: 'none' | TMode | TMode[]; // 裁剪、缩放模式 default none
+};
+
+export type TImgProps = Omit<React.HTMLProps<HTMLDivElement>, 'children'> & {
   src?: string; // 图片地址
   mode?: 'none' | TMode | TMode[]; // 裁剪、缩放模式 default none
   loadingTip?: React.ReactNode; // 加载提示内容
   errorTip?: React.ReactNode; // 错误提示内容
+  children?: (options: TImgOptions) => JSX.Element;
 };
 
 /**
@@ -24,6 +31,7 @@ const Img: FC<TImgProps> = ({
   errorTip = '重新加载',
   className,
   onClick,
+  children,
   ...props
 }) => {
   const box = useRef<HTMLDivElement>(null);
@@ -32,9 +40,9 @@ const Img: FC<TImgProps> = ({
     loading: false,
     error: false,
     cutOut: undefined as boolean | undefined, // 是否裁剪
-    imgStyle: {} as React.CSSProperties,
+    style: {} as React.CSSProperties,
   });
-  const { src, loading, error, cutOut, imgStyle } = states;
+  const { src, loading, error, cutOut, style } = states;
 
   const load = async () => {
     try {
@@ -42,7 +50,7 @@ const Img: FC<TImgProps> = ({
 
       const { width, height } = await getImg(srcSource!);
 
-      const imgStyle: React.CSSProperties = {};
+      const style: React.CSSProperties = {};
 
       if (cutOut) {
         const { clientWidth, clientHeight } = box.current!;
@@ -50,13 +58,13 @@ const Img: FC<TImgProps> = ({
         const heightRatio = height / clientHeight;
 
         if (mode.includes('aspectFit')) {
-          imgStyle[widthRatio > heightRatio ? 'width' : 'height'] = '100%';
+          style[widthRatio > heightRatio ? 'width' : 'height'] = '100%';
         } else if (mode.includes('aspectFill')) {
-          imgStyle[widthRatio < heightRatio ? 'width' : 'height'] = '100%';
+          style[widthRatio < heightRatio ? 'width' : 'height'] = '100%';
         }
       }
 
-      setStates({ src: srcSource, loading: false, imgStyle });
+      setStates({ src: srcSource, loading: false, style });
     } catch (e) {
       setStates({ loading: false, error: true });
     }
@@ -92,7 +100,13 @@ const Img: FC<TImgProps> = ({
       }}
       {...props}
     >
-      {(loading && loadingTip) || (error && errorTip) || <img src={src} style={imgStyle} alt="" />}
+      {(loading && loadingTip) ||
+        (error && errorTip) ||
+        (children ? (
+          children({ src, style, mode })
+        ) : (
+          <img className="seasoning-img-children" src={src} style={style} alt="" />
+        ))}
     </div>
   );
 };
