@@ -1,10 +1,10 @@
-import { once } from 'lodash';
+import once from 'lodash/once';
 
 /**
  * 插入样式
  */
 export const installLink = (href: string) =>
-  new Promise<void>(r => {
+  new Promise<void>((r) => {
     const script = document.createElement('link');
     script.rel = 'Stylesheet';
     script.href = href;
@@ -16,7 +16,7 @@ export const installLink = (href: string) =>
  * 插入脚本
  */
 export const installScript = (src: string) =>
-  new Promise<void>(r => {
+  new Promise<void>((r) => {
     const script = document.createElement('script');
     script.src = src;
     script.onload = () => r();
