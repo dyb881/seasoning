@@ -51,7 +51,10 @@ export default class Request {
     const { defaultConfig, errorTexts, ...configs } = config;
     Object.assign(this.defaultConfig, defaultConfig);
     Object.assign(this.errorTexts, errorTexts);
-    Object.assign(this, pickBy(configs, Boolean));
+    Object.assign(
+      this,
+      pickBy(configs, (i) => i !== undefined)
+    );
     this.config = config;
   };
 
