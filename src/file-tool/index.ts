@@ -91,10 +91,9 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 /**
  * base64 转 文件
  */
-export const base64ToFile = (base64: string, fileName = 'file') => {
+export const base64ToFile = (base64: string, fileName = 'file.jpg') => {
   const blob = base64ToBlob(base64);
-  const ext = blob.type.split('/')[1];
-  const file = blobToFile(blob, `${fileName}.${ext}`);
+  const file = blobToFile(blob, fileName);
   return file;
 };
 
@@ -128,27 +127,46 @@ type TOptions = {
   multiple?: boolean;
   extnames?: string[];
   maxSize?: number;
+  onFile?: () => void; // 选中文件后
 };
 
 /**
  * 直接获取 base64
  * 添加 maxSize 参数后，会根据尺寸压缩并解决图片旋转的问题
  */
-export const getBase64s = async ({ multiple, extnames, maxSize } = {} as TOptions) => {
+export const getBase64s = async ({ multiple, extnames, maxSize, onFile } = {} as TOptions) => {
   const files = await getFile(multiple);
+
+  onFile?.();
 
   // 验证文件后缀名
   if (extnames?.length && !inExtname(files, extnames)) {
     throw new Error(`仅允许选择后缀名为：${extnames.join('、')}的文件`);
   }
 
-  // 根据尺寸压缩图片
-  if (maxSize) {
-    const { getBase64Strings } = await import('exif-rotate-js');
-    return getBase64Strings(Array.from(files), { maxSize });
+  return fileToBase64s(files, maxSize);
+};
+
+/**
+ * 获取处理后的文件
+ * 添加 maxSize 参数后，会根据尺寸压缩并解决图片旋转的问题
+ */
+export const getFiles = async ({ multiple, extnames, maxSize, onFile } = {} as TOptions) => {
+  const files = await getFile(multiple);
+
+  onFile?.();
+
+  // 验证文件后缀名
+  if (extnames?.length && !inExtname(files, extnames)) {
+    throw new Error(`仅允许选择后缀名为：${extnames.join('、')}的文件`);
   }
 
-  return fileToBase64s(files);
+  const base64s = await fileToBase64s(files, maxSize);
+
+  return base64ToFiles(
+    base64s,
+    Array.from(files).map((file) => file.name)
+  );
 };
 
 export default {
@@ -163,4 +181,5 @@ export default {
   blobDownload,
   base64Download,
   getBase64s,
+  getFiles,
 };

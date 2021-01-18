@@ -1,6 +1,6 @@
 {
   "name": "seasoning",
-  "version": "1.11.6",
+  "version": "1.11.8",
   "license": "MIT",
   "scripts": {
     "start": "dumi dev",
@@ -40,6 +40,7 @@
     "object-to-formdata": "^4.1.0",
     "rc-field-form": "^1.17.4",
     "react-transition-group": "^4.4.1",
+    "release": "^6.3.0",
     "ua-parser-js": "^0.7.23"
   },
   "devDependencies": {

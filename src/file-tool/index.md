@@ -45,3 +45,4 @@ getFile()
 | blobDownload   | blob 下载成文件                                                          |
 | base64Download | base64 下载成文件                                                        |
 | getBase64s     | 直接获取 base64，添加 maxSize 参数后，会根据尺寸压缩并解决图片旋转的问题 |
+| getFiles       | 执行 getBase64s 后批量转换回 File                                        |
