@@ -43,7 +43,7 @@ export const inExtname = (files: TFiles, extnames: string[]): boolean => {
  */
 export const fileToBase64 = async (file: File, maxSize?: number) => {
   // 根据尺寸压缩图片
-  if (maxSize) {
+  if (maxSize && file.size / 1024 > 100) {
     const { getBase64Strings } = await import('exif-rotate-js');
     const [base64] = await getBase64Strings([file], { maxSize });
     return base64;

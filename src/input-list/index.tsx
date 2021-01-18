@@ -27,8 +27,7 @@ export const InputList: FC<TInputListProps> = ({
   }, [val]);
 
   const add = () => {
-    const newVal = [...val, undefined];
-    setVal(newVal);
+    setVal([...val, undefined]);
   };
 
   const del = (index: number) => {
