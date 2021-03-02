@@ -6,6 +6,7 @@ import { base64ToFile } from '../file-tool';
 export const getImg = (src: string) => {
   return new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new Image();
+    img.setAttribute('crossorigin', 'anonymous');
     Object.assign(img, { src, onload: () => resolve(img), onerror: reject });
   });
 };
@@ -15,15 +16,17 @@ export const getImg = (src: string) => {
  */
 export const imgToBase64 = (img: HTMLImageElement) => {
   return new Promise<string>((resolve) => {
-    img.onload = () => {
-      const { width, height } = img;
+    const toBase64 = () => {
       const canvas = document.createElement('canvas');
+      const { width, height } = img;
       Object.assign(canvas, { width, height });
       const ctx = canvas.getContext('2d');
       ctx!.drawImage(img, 0, 0, width, height);
       const dataURL = canvas.toDataURL('image/png');
       resolve(dataURL);
+      img.removeEventListener('load', toBase64);
     };
+    img.width ? toBase64() : img.addEventListener('load', toBase64);
   });
 };
 
@@ -39,7 +42,7 @@ export const urlToBase64 = async (src: string) => {
  * 网络图片转Base64 批量
  */
 export const urlToBase64s = (srcs: string[]) => {
-  return Promise.all(srcs.map((src, index) => urlToBase64(src)));
+  return Promise.all(srcs.map((src) => urlToBase64(src)));
 };
 
 /**
@@ -57,4 +60,4 @@ export const urlToFiles = (srcs: string[], fileNames = [] as string[]) => {
   return Promise.all(srcs.map((src, index) => urlToFile(src, fileNames[index])));
 };
 
-export default { getImg, imgToBase64 };
+export default { getImg, imgToBase64, urlToBase64, urlToBase64s, urlToFile, urlToFiles };

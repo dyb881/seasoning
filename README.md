@@ -6,4 +6,4 @@
 
 ## 如果觉得项目还不错，请打赏一波，您的支持是我最大的动力。
 
-![二维码](https://bittyshow-files.oss-cn-guangzhou.aliyuncs.com/pay.png)
+![二维码](https://files.bittyshow.top/pay.png)
