@@ -55,7 +55,8 @@ export type TFormItemPropsEnhance<T extends RcFieldProps = RcFieldProps> = Pick<
  */
 export const formItemEnhance = <T extends TFormItemPropsEnhance>(
   Item: FC<any>,
-  defaultChildren: (props: T) => JSX.Element
+  defaultChildren: (props: T) => JSX.Element,
+  defaultFormItemProps?: T['formItemProps']
 ) => {
   const FormItem: FC<T> = (props) => {
     let {
@@ -116,7 +117,7 @@ export const formItemEnhance = <T extends TFormItemPropsEnhance>(
     }
 
     return (
-      <Item {...{ label, name, rules, valuePropName, validateFirst: true }} {...formItemProps}>
+      <Item {...defaultFormItemProps} {...{ label, name, rules, valuePropName }} {...formItemProps}>
         {React.isValidElement(children) ? React.cloneElement(children, childrenProps) : children}
       </Item>
     );
