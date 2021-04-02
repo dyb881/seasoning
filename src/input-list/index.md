@@ -21,13 +21,17 @@ import React from 'react';
 import { Input } from 'antd';
 import { InputList } from 'seasoning';
 
-export default () => (
-  <div style={{ padding: 10 }}>
-    <InputList onChange={console.log}>
-      <Input />
-    </InputList>
-  </div>
-);
+export default () => {
+  const [value, onChange] = React.useState();
+
+  return (
+    <div style={{ padding: 10 }}>
+      <InputList value={value} onChange={onChange}>
+        <Input />
+      </InputList>
+    </div>
+  );
+};
 ```
 
 ## API
