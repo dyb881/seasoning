@@ -24,9 +24,7 @@ import { InputList } from 'seasoning';
 export default () => (
   <div style={{ padding: 10 }}>
     <InputList onChange={console.log}>
-      <InputList>
-        <Input />
-      </InputList>
+      <Input />
     </InputList>
   </div>
 );
