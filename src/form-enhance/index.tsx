@@ -116,7 +116,7 @@ export const formItemEnhance = <T extends TFormItemPropsEnhance>(
     }
 
     return (
-      <Item {...{ label, name, rules, valuePropName }} {...formItemProps}>
+      <Item {...{ label, name, rules, valuePropName, validateFirst: true }} {...formItemProps}>
         {React.isValidElement(children) ? React.cloneElement(children, childrenProps) : children}
       </Item>
     );
