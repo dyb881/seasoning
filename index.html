@@ -7,12 +7,22 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
     />
     <link rel="shortcut icon" type="image/x-icon" href="./logo.svg" />
-    <link rel="stylesheet" href="/seasoning/umi.css" />
     <script>
       window.routerBase = "/seasoning";
     </script>
     <script>
-      //! umi version: 3.2.28
+      //! umi version: 3.4.7
+    </script>
+    <script>
+      !(function () {
+        var e = localStorage.getItem("dumi:prefers-color"),
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches,
+          r = ["light", "dark", "auto"];
+        document.documentElement.setAttribute(
+          "data-prefers-color",
+          e === r[2] ? (t ? r[1] : r[0]) : r.includes(e) ? e : r[0]
+        );
+      })();
     </script>
   </head>
   <body>
