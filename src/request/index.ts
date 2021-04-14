@@ -62,21 +62,13 @@ export default class Request {
    * 执行请求
    */
   private request = (configs: TConfig) => {
-    let { url = '', headers, ...config } = configs;
-    const { headers: defaultHeaders, ...defaultConfig } = this.defaultConfig;
+    let { url = '', ...config } = configs;
 
     // 非完整 url 的情况下，拼接地址
     if (!isCompleteUrl(url)) url = this.baseURL + url;
 
     // 请求拦截
-    config = this.interceptorsRequest({
-      url,
-      // 合并配置
-      ...defaultConfig,
-      ...config,
-      // 合并覆盖请求头
-      headers: { ...defaultHeaders, ...headers },
-    });
+    config = this.interceptorsRequest({ url, ...this.defaultConfig, ...config });
 
     // 打印请求日志
     if (this.console) log.request(config);
