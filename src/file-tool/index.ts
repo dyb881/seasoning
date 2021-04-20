@@ -105,14 +105,22 @@ export const base64ToFiles = (base64s: string[], fileNames = [] as string[]) => 
 };
 
 /**
+ * url 下载成文件
+ */
+export const urlDownload = (url: string, fileName: string) => {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  a.click();
+};
+
+/**
  * blob 下载成文件
  */
 export const blobDownload = (blob: Blob, fileName: string) => {
-  const a = document.createElement('a');
-  a.href = window.URL.createObjectURL(blob);
-  a.download = fileName;
-  a.click();
-  window.URL.revokeObjectURL(a.href);
+  const url = window.URL.createObjectURL(blob);
+  urlDownload(url, fileName);
+  window.URL.revokeObjectURL(url);
 };
 
 /**
