@@ -186,6 +186,7 @@ export default {
   blobToFile,
   base64ToFile,
   base64ToFiles,
+  urlDownload,
   blobDownload,
   base64Download,
   getBase64s,

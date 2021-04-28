@@ -42,6 +42,7 @@ getFile()
 | blobToFile     | blob 转文件                                                              |
 | base64ToFile   | base64 转文件                                                            |
 | base64ToFiles  | base64 转文件 批量                                                       |
+| urlDownload    | url 下载成文件                                                           |
 | blobDownload   | blob 下载成文件                                                          |
 | base64Download | base64 下载成文件                                                        |
 | getBase64s     | 直接获取 base64，添加 maxSize 参数后，会根据尺寸压缩并解决图片旋转的问题 |

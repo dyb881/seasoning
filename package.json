@@ -1,6 +1,6 @@
 {
   "name": "seasoning",
-  "version": "1.11.22",
+  "version": "1.11.23",
   "license": "MIT",
   "scripts": {
     "start": "dumi dev",
