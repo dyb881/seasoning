@@ -21,7 +21,7 @@ import { Request } from 'seasoning';
 const { baseURL, get, post, put, patch, del, upload, clone } = new Request({
   host: 'http://localhost',
   apiPath: '/api',
-  interceptorsRequest: config => {
+  interceptorsRequest: (config) => {
     // 请求拦截器写入登录信息
     config.headers = { ...config.headers, token: '123456789' };
     return config;
@@ -77,6 +77,24 @@ export default () => (
       }}
     >
       使用克隆请求器发出请求
+    </Button>
+    <Button
+      type="primary"
+      onClick={async () => {
+        const url =
+          'https://api.decoration.bittyshow.top/api/decoration/designs/home?current=1&pageSize=100&username=chenyuling';
+        get(url, {}, '缓存请求1', { cacheKey: 'home' }).then((res) => {
+          console.log(1, res);
+        });
+        get(url, {}, '缓存请求2', { cacheKey: 'home' }).then((res) => {
+          console.log(2, res);
+        });
+        get(url, {}, '缓存请求3', { cacheKey: 'home' }).then((res) => {
+          console.log(3, res);
+        });
+      }}
+    >
+      发出缓存请求
     </Button>
   </Space>
 );

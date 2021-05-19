@@ -108,11 +108,47 @@ export default class Request {
   };
 
   /**
+   * 缓存的请求
+   */
+  private caches: { [key: string]: TRequestReturn } = {};
+
+  /**
+   * 请求中
+   */
+  private requestLoadings: { [key: string]: boolean } = {};
+
+  /**
    * 创建请求器
    */
   private createRequest = (method: TConfig['method'], configs?: TConfig) => {
     return (url: string, data?: object, ...args: (TConfig | string)[]) => {
-      return this.request(Object.assign({ method, url, data }, configs, ...args.map((i) => labelToConfig(i))));
+      const config = Object.assign({ method, url, data }, configs, ...args.map((i) => labelToConfig(i)));
+      const key = config.cacheKey;
+      if (!key) return this.request(config);
+
+      /**
+       * 接口缓存
+       * 多个地方同时请求同一个cacheKey，可以共用一次接口请求
+       */
+      const request = async () => {
+        // 正在请求中
+        if (this.requestLoadings[key]) {
+          // 暂停一段时间
+          await new Promise((r) => setTimeout(r, 500));
+          // 再次请求
+          const res: TRequestReturn = await request();
+          return res;
+        }
+
+        this.requestLoadings[key] = true;
+        const res = this.caches[key] || (await this.request(config));
+        // 写入缓存
+        if (res.ok) this.caches[key] = res;
+        this.requestLoadings[key] = false;
+        return res;
+      };
+
+      return request();
     };
   };
 

@@ -25,6 +25,7 @@ export type TConfig = {
   url?: string; // 请求地址
   data?: any; // 请求元数据，转为主体前的数据
   label?: string; // 请求标签，一般用于请求日志标记
+  cacheKey?: string; // 缓存Key，把接口数据缓存到本地
   [key: string]: any;
 };
 
