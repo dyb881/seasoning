@@ -26,7 +26,7 @@ export { default as InputList } from './input-list';
 // ----------------- Mobile ----------------- //
 
 // tools
-export { default as compatible } from './compatible';
+export * as compatible from './compatible';
 
 // components
 export { default as FontCenter } from './font-center';
