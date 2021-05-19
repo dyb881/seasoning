@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[58],{"My/E":function(e,n,t){"use strict";t.r(n),t.d(n,"mobxCombine",(function(){return b}));var r=t("0Owb"),a=t("q1tI"),o=t.n(a),c=t("TyAF"),b=e=>{var n=n=>{var t=Object(c["a"])(n),a=n=>o.a.createElement(t,Object(r["default"])({},n,{stores:e}));return a},t=e=>n(e);return{combine:n,combinePage:t}};n["default"]=b}}]);
