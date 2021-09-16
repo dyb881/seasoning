@@ -123,8 +123,19 @@ export default class Request {
   private createRequest = (method: TConfig['method'], configs?: TConfig) => {
     return (url: string, data?: object, ...args: (TConfig | string)[]) => {
       const config = Object.assign({ method, url, data }, configs, ...args.map((i) => labelToConfig(i)));
-      const key = config.cacheKey;
-      if (!key) return this.request(config);
+      const { cacheKey, clearCacheKey } = config;
+      if (!cacheKey) {
+        let res = this.request(config);
+
+        // 请求成功时，清除缓存
+        if (clearCacheKey)
+          res = res.then((res) => {
+            if (res.ok) delete this.caches[clearCacheKey];
+            return res;
+          });
+
+        return res;
+      }
 
       /**
        * 接口缓存
@@ -132,7 +143,7 @@ export default class Request {
        */
       const request = async () => {
         // 正在请求中
-        if (this.requestLoadings[key]) {
+        if (this.requestLoadings[cacheKey]) {
           // 暂停一段时间
           await new Promise((r) => setTimeout(r, 500));
           // 再次请求
@@ -140,11 +151,11 @@ export default class Request {
           return res;
         }
 
-        this.requestLoadings[key] = true;
-        const res = this.caches[key] || (await this.request(config));
+        this.requestLoadings[cacheKey] = true;
+        const res = this.caches[cacheKey] || (await this.request(config));
         // 写入缓存
-        if (res.ok) this.caches[key] = res;
-        this.requestLoadings[key] = false;
+        if (res.ok) this.caches[cacheKey] = res;
+        this.requestLoadings[cacheKey] = false;
         return res;
       };
 

@@ -85,7 +85,7 @@ export const labelToConfig = (config?: TConfig | string) => {
 /**
  * 请求拦截
  */
-export const interceptorsRequest: TInterceptorsRequest = config => config;
+export const interceptorsRequest: TInterceptorsRequest = (config) => config;
 
 /**
  * 响应拦截
@@ -95,7 +95,7 @@ export const interceptorsResponse: TInterceptorsResponse = (res, _config) => res
 /**
  * 请求方法
  */
-export const requestFunction: TRequestFunction = config => {
+export const requestFunction: TRequestFunction = (config) => {
   // 转为主体
   config = toBody(config);
 
@@ -111,13 +111,13 @@ export const requestFunction: TRequestFunction = config => {
     }, config.timeout)
   );
 
-  return Promise.race([fetch(config.url!, config), timeout]).then(response => {
+  return Promise.race([fetch(config.url!, config), timeout]).then(async (response) => {
     if (response instanceof Response) {
       const { responseType } = config;
 
       if (responseType !== 'json' && responseType && response[responseType]) {
         // 返回特定解析类型
-        return { [responseType]: response[responseType](), response };
+        return { [responseType]: await response[responseType](), response };
       }
 
       return response.json();
