@@ -64,7 +64,7 @@ export const fileToBase64s = (files: FileList | File[], maxSize?: number) => {
 };
 
 /**
- * base64 转 blob
+ * base64 转 blob
  */
 export const base64ToBlob = (base64: string) => {
   const arr = base64.split(',');
@@ -79,7 +79,7 @@ export const base64ToBlob = (base64: string) => {
 };
 
 /**
- * blob 转 文件
+ * blob 转 文件
  */
 export const blobToFile = (blob: Blob, fileName: string) => {
   const file: any = blob;
@@ -89,7 +89,7 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 };
 
 /**
- * base64 转 文件
+ * base64 转 文件
  */
 export const base64ToFile = (base64: string, fileName = 'file.jpg') => {
   const blob = base64ToBlob(base64);
@@ -98,7 +98,7 @@ export const base64ToFile = (base64: string, fileName = 'file.jpg') => {
 };
 
 /**
- * base64 转 文件 批量
+ * base64 转 文件 批量
  */
 export const base64ToFiles = (base64s: string[], fileNames = [] as string[]) => {
   return Promise.all(base64s.map((base64, index) => base64ToFile(base64, fileNames[index])));

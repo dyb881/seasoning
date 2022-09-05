@@ -17,10 +17,8 @@ export const toOptions = (options: TOptions) => {
 /**
  * 获取 URL 参数
  */
-export const getParams = () => {
-  return qs.parse(window.location.search.slice(1)) as {
-    [key: string]: string;
-  };
+export const getParams = <T extends { [key: string]: string }>() => {
+  return qs.parse(window.location.search.slice(1)) as T;
 };
 
 export default {

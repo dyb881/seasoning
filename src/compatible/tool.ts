@@ -1,4 +1,3 @@
-import { UAParser } from 'ua-parser-js';
 import { isIOS, isAndroid } from './info';
 
 /**
